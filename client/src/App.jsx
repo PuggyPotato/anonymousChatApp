@@ -6,8 +6,11 @@ function App(){
 
   const socket = useRef(null);
 
+  socket.current = io("http://127.0.0.1:5000")
 
-
+  socket.current.on("connected",(message) =>{
+    console.log(message)
+  })
 
   return(
     <>
@@ -15,3 +18,5 @@ function App(){
     </>
   )
 }
+
+export default App
