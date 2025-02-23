@@ -16,3 +16,8 @@ if __name__ == "__main__":
 def handle_connect():
     print("client connected")
     emit("connected","newMessage")
+
+@socketio.on("newMessage")
+def handle_newMessage(newMessage):
+    print(newMessage)
+    emit("newestMessageArray",newMessage,broadcast=True)
