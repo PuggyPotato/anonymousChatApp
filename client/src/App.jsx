@@ -25,9 +25,9 @@ function App(){
     <>
       <div className=" h-screen flex justify-center items-center">
         <form className="border-2 w-128 h-152 relative" onSubmit={sendMessage}>
-            <div className="grid gap-1 scrollable w-128 h-134 overflow-y-auto">
+            <div className="place-items-center gap-0 scrollable w-128 h-134 overflow-y-auto overflow-x-hidden">
               {newestMessageArray.map((item,key) =>(
-                <li key={key} className="grid grid-cols border-2 rounded-lg right-0 justify-end w-max h-auto justify-self-end p-3 mr-3 mt-2 mb-2">
+                <li key={key} className="grid grid-cols-1 border-2 rounded-lg right-0 justify-end max-w-[475px] h-auto justify-self-end p-3 mr-3 mt-2 mb-2 break-all">
                   {item}
                 </li>
               ))}
