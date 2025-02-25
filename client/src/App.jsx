@@ -21,14 +21,32 @@ function App(){
     socket.current.emit("newMessage",userMessage)
   }
 
+  // Create a ref for the message container
+  const messagesEndRef = useRef(null);
+
+  // Function to scroll to bottom
+  const scrollToBottom = () => {
+    const messageContainer = document.querySelector('.message-container'); // Add this class to your container
+    if (messageContainer) {
+        messageContainer.scrollTo({
+            top:messageContainer.scrollHeight,
+            behavior:"smooth"
+        }) 
+       }}
+
+       useEffect(() => {
+        scrollToBottom();
+        }, [newestMessageArray]);
+
   return(
     <>
       <div className=" h-screen flex justify-center items-center">
         <form className="border-2 w-128 h-152 relative" onSubmit={sendMessage}>
-            <div className="place-items-center gap-0 scrollable w-128 h-134 overflow-y-auto overflow-x-hidden">
+            <div className="place-items-center gap-0 scrollable w-128 h-134 overflow-y-auto overflow-x-hidden message-container">
               {newestMessageArray.map((item,key) =>(
                 <li key={key} className="grid grid-cols-1 border-2 rounded-lg right-0 justify-end max-w-[475px] h-auto justify-self-end p-3 mr-3 mt-2 mb-2 break-all">
                   {item}
+                  <div ref={messagesEndRef}></div>
                 </li>
               ))}
             </div>
